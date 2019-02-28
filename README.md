@@ -10,3 +10,11 @@ Also the user interface for generation of simulation configuration and post proc
 
 - [SPECFEM2D_on_windows_with_boat](https://toolbox-wasi.github.io/SPECFEM2D_on_docker_with_boat/)  
 This is the SPECFEM2D version of the library above.
+
+
+
+
+Other small codes for supporting a simulation:  
+
+- [exodos2specfem3d](https://mnagaso.github.io/exodos2specfem3d/)  
+A small code which converts exodos mesh file into specfem3d format.
