@@ -1,0 +1,181 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tutorial &#8212; SPECFEM2D_on_docker_with_boat  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Meshing tutorial" href="meshing.html" />
+    <link rel="prev" title="Installation and configuration" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p>In this page, an example of entire calculation with this library is indicated with a small geometry.</p>
+<div class="section" id="check-if-the-docker-daemon-is-running">
+<h2>1. Check if the docker daemon is running.<a class="headerlink" href="#check-if-the-docker-daemon-is-running" title="Permalink to this headline">¶</a></h2>
+<p>On linux, it is ok if the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> (in the terminal) indicates a list of docker images. On OSX and Windows, the state of the daemon can be seen on the menu bar as this image:</p>
+<img src="./_static/imgs/docker_daemon_state.png" alt="docker status" title="status indication in OSX(up) and Windows(down)" width=250 />  </div>
+<div class="section" id="start-docker-container">
+<h2>2. Start docker container<a class="headerlink" href="#start-docker-container" title="Permalink to this headline">¶</a></h2>
+<p>Initialization of the colculation environment for use of this library is quite simple.At first, please open the terminal or Power shell (windows) and navigate it to the directory of this library by running the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/path/to/this/library/
+</pre></div>
+</div>
+<p>E.g. if you placed the directory of this library (i.e. <code class="docutils literal notranslate"><span class="pre">SPECFEM2D_on_docker_with_boat</span></code>) in your <code class="docutils literal notranslate"><span class="pre">Documents</span></code> directory, this <code class="docutils literal notranslate"><span class="pre">cd</span></code> command should be as</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/Documents/SPECFEM2D_on_docker_with_boat
+</pre></div>
+</div>
+<p>Then start the docker container (the environment packaged with docker) by the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose up
+</pre></div>
+</div>
+<p>If it is the first time to run this command on your computer, it may take about 10 minutes because docker is downloading and compiling all necessary libraries and codes automatically. From the next time, this waiting time will not be required and docker will start the docker container in few seconds.
+After finishing it, you may see the indication like below:</p>
+<img src="./_static/imgs/docker_container_start.png" alt="docker start" title="messages when docker starts successfully." width=600 />   </div>
+<div class="section" id="open-jupyter-lab-on-your-internet-browser-chrome-etc">
+<h2>3. Open jupyter lab on your internet browser (chrome etc.)<a class="headerlink" href="#open-jupyter-lab-on-your-internet-browser-chrome-etc" title="Permalink to this headline">¶</a></h2>
+<p>As indicated in the terminal, jupyter lab is currently running in the docker environment with an accessible ip address:port number <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8000</span></code>. It should be noted that this port number is only about the inside of docker enviroment and now your are outside of there. The port connection between inside and outside of docker environment is configured with <code class="docutils literal notranslate"><span class="pre">dokcer-compose.yml</span></code> file and you can verify by reading this file or by the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose ps
+</pre></div>
+</div>
+<p>which will indicates as</p>
+<img src="./_static/imgs/docker_ps.png" alt="docker start" title="messages when docker starts successfully." width=600 />   <p>you may find that the port 8000 inside of docker is connected to 8002 of its outside.So in this situation, you may open the jupyter lab environment by accessing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8002</span>
+</pre></div>
+</div>
+<p>with any kind of the web browser.</p>
+</div>
+<div class="section" id="explanation-about-jupyter-lab">
+<h2>4. Explanation about Jupyter lab<a class="headerlink" href="#explanation-about-jupyter-lab" title="Permalink to this headline">¶</a></h2>
+<p>Openning <code class="docutils literal notranslate"><span class="pre">127.0.0.1:8002</span></code> in a web browser shows a jupyter lab’s main screen as indicated below,</p>
+<img src="./_static/imgs/jupyter_main.png" alt="docker start" title="messages when docker starts successfully." width=600 />   <p>A file browser is on the left side. At the initial time, you may find only one single example directory on the list. You can add any files or directory from the buttons above or by drag and drop directly on this browser.Some buttons on the right side are for creating a new jupyter notebook file or a text file, or starting python console.A terminal window may be openned from the button below, which is directly opened form the docker environment thus it is useful to e.g. installing additional libraries or erasing files etc.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Example_small</span></code> directory includes the files for making a small simulation as an example.
+After entering this folder by double clicking in the file browser</p>
+</div>
+<div class="section" id="use-the-user-interface-to-configure-your-simulation">
+<h2>5. Use the user interface to configure your simulation<a class="headerlink" href="#use-the-user-interface-to-configure-your-simulation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="mesh-preparation">
+<h2>6. Mesh preparation<a class="headerlink" href="#mesh-preparation" title="Permalink to this headline">¶</a></h2>
+<p>Please refer the meshing page below.</p>
+<p><a class="reference internal" href="meshing.html"><span class="doc">mesh article</span></a></p>
+</div>
+<div class="section" id="run-simulation">
+<h2>7. run simulation<a class="headerlink" href="#run-simulation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="post-processings">
+<h2>8. post processings<a class="headerlink" href="#post-processings" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SPECFEM2D_on_docker_with_boat</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#check-if-the-docker-daemon-is-running">1. Check if the docker daemon is running.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#start-docker-container">2. Start docker container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open-jupyter-lab-on-your-internet-browser-chrome-etc">3. Open jupyter lab on your internet browser (chrome etc.)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#explanation-about-jupyter-lab">4. Explanation about Jupyter lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-the-user-interface-to-configure-your-simulation">5. Use the user interface to configure your simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mesh-preparation">6. Mesh preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-simulation">7. run simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-processings">8. post processings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="meshing.html">Meshing tutorial</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation and configuration</a></li>
+      <li>Next: <a href="meshing.html" title="next chapter">Meshing tutorial</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, masaru nagaso.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tutorial.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
