@@ -86,7 +86,10 @@
 At first, we make only the surface of the rectangular area without hole by selecting like:</p>
 <img src="./_static/imgs/mesh_ex1_8.png" alt="example 1 rect surface" title="ex1 rect surface" width=350 />  <p>then press <code class="docutils literal notranslate"><span class="pre">e</span></code> to finish the definition of one single surface.
 After this, the circle area is also converted to be another surface with the same way:</p>
-<img src="./_static/imgs/mesh_ex1_9.png" alt="example 1 circ surface" title="ex1 circ surface" width=350 />  <p>Now we have 2 plane surfaces, one is the rectangular area without hole and one circular area which will be a hole.
+<img src="./_static/imgs/mesh_ex1_9.png" alt="example 1 circ surface" title="ex1 circ surface" width=350 />  </div>
+<div class="section" id="boolean-operation">
+<h3>1-5: boolean operation<a class="headerlink" href="#boolean-operation" title="Permalink to this headline">¶</a></h3>
+<p>Now we have 2 plane surfaces, one is the rectangular area without hole and one circular area which will be a hole.
 In order to make rectangular geometry, we carry out a boolean difference from Modules-&gt;Geometry-&gt;Elementary entities-&gt;Boolean-&gt;Difference to cut the circle out from the rectangle. Please make it sure that the check box status for erasing the original objects is as:</p>
 <img src="./_static/imgs/mesh_ex1_10.png" alt="example 1 circ surface" title="ex1 circ surface" width=350 />  <p>then select the plane surface that will be the actual surface but not a hole part. <code class="docutils literal notranslate"><span class="pre">plane</span> <span class="pre">1</span></code> in this case. Looks of the Gmsh window after this selection will be:</p>
 <img src="./_static/imgs/mesh_ex1_11.png" alt="example 1 bool select 1" title="ex1 bool select i" width=350 />  <p>Press e to finish the selection of the first plane surface.
@@ -95,13 +98,13 @@ Next selection is for the part which will be a hole. Please select the hole part
 This boolean difference creates a new plane surface with a hole, and erased the original 2 plane surfaces i.e. rectangle and circle.</p>
 </div>
 <div class="section" id="definition-boundary-conditions-and-material-flags">
-<h3>1-5: Definition boundary conditions and material flags<a class="headerlink" href="#definition-boundary-conditions-and-material-flags" title="Permalink to this headline">¶</a></h3>
+<h3>1-6: Definition boundary conditions and material flags<a class="headerlink" href="#definition-boundary-conditions-and-material-flags" title="Permalink to this headline">¶</a></h3>
 <p>We need to define the physical names of outer boundary of the meshing region, which SPECFEM requires to recognize the ends of the simulation domain. We define the 4 physical names for each 4 bounds with exactly the same name as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">tag</span> <span class="n">name</span><span class="p">:</span> <span class="n">explain</span><span class="p">)</span>
-<span class="n">Left</span>   <span class="p">:</span>   <span class="n">left</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span><span class="o">.</span>
+<span class="n">Left</span>   <span class="p">:</span> <span class="n">left</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span><span class="o">.</span>
 <span class="n">Bottom</span> <span class="p">:</span> <span class="n">lower</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span><span class="o">.</span>
-<span class="n">Right</span>  <span class="p">:</span>  <span class="n">right</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span><span class="o">.</span>
-<span class="n">Top</span>    <span class="p">:</span>    <span class="n">upper</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span>
+<span class="n">Right</span>  <span class="p">:</span> <span class="n">right</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span><span class="o">.</span>
+<span class="n">Top</span>    <span class="p">:</span> <span class="n">upper</span> <span class="n">edge</span> <span class="n">of</span> <span class="n">the</span> <span class="n">domain</span>
 </pre></div>
 </div>
 <p>This process can be done from  Modules-&gt;Geometry-&gt;Physical Groups-&gt;Add-&gt;Curve as this image below:</p>
@@ -118,7 +121,7 @@ This boolean difference creates a new plane surface with a hole, and erased the 
 <p>Definition of a physical surface may be done from Modules-&gt;Geometry-&gt;Physical Groups-&gt;Add-&gt;Surface like:</p>
 <img src="./_static/imgs/mesh_ex1_15.png" alt="example 1 phys tags surf" title="ex1 phys tags surf" width=350 />  </div>
 <div class="section" id="meshing">
-<h3>1-6: Meshing<a class="headerlink" href="#meshing" title="Permalink to this headline">¶</a></h3>
+<h3>1-7: Meshing<a class="headerlink" href="#meshing" title="Permalink to this headline">¶</a></h3>
 <p>Before generating a mesh, we need to setup 2 things,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">define</span> <span class="n">the</span> <span class="n">element</span> <span class="n">size</span><span class="o">.</span>
 <span class="mf">2.</span> <span class="n">specify</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">mesh</span> <span class="k">as</span> <span class="n">quad</span> 
@@ -137,55 +140,53 @@ The result of meshing is indicated as:</p>
 In order to use this mesh file, it is necessary to move this file into the simulation directory (i.e. where your jupyter notebook, for simulation configuration, is placed.), and verify the file name before .msh part is exactly the same with the <code class="docutils literal notranslate"><span class="pre">file</span> <span class="pre">name</span></code> which you put in the simulation configuration step.</p>
 </div>
 <div class="section" id="the-way-to-mesh-a-large-model-without-gui">
-<h3>1-7: The way to mesh a large model (without GUI)<a class="headerlink" href="#the-way-to-mesh-a-large-model-without-gui" title="Permalink to this headline">¶</a></h3>
+<h3>1-8: The way to mesh a large model (without GUI)<a class="headerlink" href="#the-way-to-mesh-a-large-model-without-gui" title="Permalink to this headline">¶</a></h3>
+<p>Depending on the amount of RAM and graphics, sometimes meshing of a model with the great number of meshes is not possible to be visualized by GUI of Gmsh. In that case, we can use a terminal command of Gmsh.</p>
+<p>With a <code class="docutils literal notranslate"><span class="pre">.geo</span></code> file, <code class="docutils literal notranslate"><span class="pre">here</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">command</span> <span class="pre">for</span> <span class="pre">geo2mesh</span> <span class="pre">conversion</span></code></p>
 </div>
 </div>
-<div class="section" id="example-2-heterogeneous-medium">
-<h2>Example 2: heterogeneous medium<a class="headerlink" href="#example-2-heterogeneous-medium" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-2-heterogeneous-medium-e-g-hole-filled-with-oil">
+<h2>Example 2: heterogeneous medium  (e.g. hole filled with oil)<a class="headerlink" href="#example-2-heterogeneous-medium-e-g-hole-filled-with-oil" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we prepare a mesh for a heterogeneous model i.e. a simulation domain composed with multiple material.
+We will use the same shape of geometry thus the step the explanation for this example starts from just after the section 1-4 Definition of line groups and surface.</p>
 <div class="section" id="id1">
-<h3>1-1: setting of characteristic length<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>2-5: Boolean operation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>In stead of just cutting off the circle area, this example fills this circle with another material.
+Instead of boolean difference, we use here boolean fragment for keeping the plane surface inside of the circle.</p>
+<p>Before the boolean, we add some circle parts in the same way with the example 1-4 then we starts from the geometry as:</p>
 </div>
 <div class="section" id="id2">
-<h3>1-2: Definition of nodes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>2-6: Definition boundary conditions and material flags<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id3">
-<h3>1-3: Definition of lines<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>2-7: Meshing<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id4">
-<h3>1-4: Definition of line groups and surface<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id5">
-<h3>1-5: Definition boundary conditions and material flags<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id6">
-<h3>1-6: Meshing<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id7">
-<h3>1-7: The way to mesh a large model (without GUI)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h3>2-8: The way to mesh a large model (without GUI)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="example-3-structured-mesh">
 <h2>Example 3: Structured mesh<a class="headerlink" href="#example-3-structured-mesh" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>1-1: setting of characteristic length<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id6">
+<h3>1-2: Definition of nodes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id7">
+<h3>1-3: Definition of lines<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+</div>
 <div class="section" id="id8">
-<h3>1-1: setting of characteristic length<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>1-4: Definition of line groups and surface<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id9">
-<h3>1-2: Definition of nodes<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h3>1-5: Definition boundary conditions and material flags<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id10">
-<h3>1-3: Definition of lines<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h3>1-6: Meshing<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id11">
-<h3>1-4: Definition of line groups and surface<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id12">
-<h3>1-5: Definition boundary conditions and material flags<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id13">
-<h3>1-6: Meshing<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id14">
-<h3>1-7: The way to mesh a large model (without GUI)<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<h3>1-7: The way to mesh a large model (without GUI)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -214,7 +215,7 @@ In order to use this mesh file, it is necessary to move this file into the simul
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Meshing tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example-1-homogeneous-medium-with-a-hole">Example 1: homogeneous medium with a hole</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-2-heterogeneous-medium">Example 2: heterogeneous medium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-2-heterogeneous-medium-e-g-hole-filled-with-oil">Example 2: heterogeneous medium  (e.g. hole filled with oil)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-3-structured-mesh">Example 3: Structured mesh</a></li>
 </ul>
 </li>

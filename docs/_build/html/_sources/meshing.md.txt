@@ -86,6 +86,8 @@ After this, the circle area is also converted to be another surface with the sam
 
 <img src="./_static/imgs/mesh_ex1_9.png" alt="example 1 circ surface" title="ex1 circ surface" width=350 />  
 
+
+### 1-5: boolean operation
 Now we have 2 plane surfaces, one is the rectangular area without hole and one circular area which will be a hole.
 In order to make rectangular geometry, we carry out a boolean difference from Modules->Geometry->Elementary entities->Boolean->Difference to cut the circle out from the rectangle. Please make it sure that the check box status for erasing the original objects is as:
 
@@ -104,15 +106,14 @@ then finish the boolean difference with tapping the key `e` then `q`.
 This boolean difference creates a new plane surface with a hole, and erased the original 2 plane surfaces i.e. rectangle and circle.
 
 
-
-### 1-5: Definition boundary conditions and material flags
+### 1-6: Definition boundary conditions and material flags
 We need to define the physical names of outer boundary of the meshing region, which SPECFEM requires to recognize the ends of the simulation domain. We define the 4 physical names for each 4 bounds with exactly the same name as:
 ```
 (tag name: explain)
-Left   :   left edge of the domain.
+Left   : left edge of the domain.
 Bottom : lower edge of the domain.
-Right  :  right edge of the domain.
-Top    :    upper edge of the domain
+Right  : right edge of the domain.
+Top    : upper edge of the domain
 ```
 
 This process can be done from  Modules->Geometry->Physical Groups->Add->Curve as this image below:
@@ -141,7 +142,7 @@ Definition of a physical surface may be done from Modules->Geometry->Physical Gr
 <img src="./_static/imgs/mesh_ex1_15.png" alt="example 1 phys tags surf" title="ex1 phys tags surf" width=350 />  
 
  
-### 1-6: Meshing
+### 1-7: Meshing
 
 Before generating a mesh, we need to setup 2 things,
 ```
@@ -176,16 +177,29 @@ In this image, the radius is set to larger and mesh size is changed to be smalle
 After finishing the generation of the mesh, mesh file may be saved from Modules->Mesh->Save then Gmsh creates a `.msh` file.
 In order to use this mesh file, it is necessary to move this file into the simulation directory (i.e. where your jupyter notebook, for simulation configuration, is placed.), and verify the file name before .msh part is exactly the same with the `file name` which you put in the simulation configuration step.
 
-### 1-7: The way to mesh a large model (without GUI)
+### 1-8: The way to mesh a large model (without GUI)
 
-## Example 2: heterogeneous medium
-### 1-1: setting of characteristic length
-### 1-2: Definition of nodes
-### 1-3: Definition of lines
-### 1-4: Definition of line groups and surface
-### 1-5: Definition boundary conditions and material flags
-### 1-6: Meshing
-### 1-7: The way to mesh a large model (without GUI)
+Depending on the amount of RAM and graphics, sometimes meshing of a model with the great number of meshes is not possible to be visualized by GUI of Gmsh. In that case, we can use a terminal command of Gmsh.
+
+With a `.geo` file, `here is the command for geo2mesh conversion`
+
+## Example 2: heterogeneous medium  (e.g. hole filled with oil)
+
+In this example, we prepare a mesh for a heterogeneous model i.e. a simulation domain composed with multiple material.
+We will use the same shape of geometry thus the step the explanation for this example starts from just after the section 1-4 Definition of line groups and surface.
+
+### 2-5: Boolean operation
+
+In stead of just cutting off the circle area, this example fills this circle with another material.
+Instead of boolean difference, we use here boolean fragment for keeping the plane surface inside of the circle.
+
+Before the boolean, we add some circle parts in the same way with the example 1-4 then we starts from the geometry as:
+
+
+
+### 2-6: Definition boundary conditions and material flags
+### 2-7: Meshing
+### 2-8: The way to mesh a large model (without GUI)
 
 ## Example 3: Structured mesh
 ### 1-1: setting of characteristic length
