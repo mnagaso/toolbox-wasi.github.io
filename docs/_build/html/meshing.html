@@ -16,6 +16,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FAQ" href="faq.html" />
     <link rel="prev" title="Tutorial" href="tutorial.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -142,7 +143,15 @@ In order to use this mesh file, it is necessary to move this file into the simul
 <div class="section" id="the-way-to-mesh-a-large-model-without-gui">
 <h3>1-8: The way to mesh a large model (without GUI)<a class="headerlink" href="#the-way-to-mesh-a-large-model-without-gui" title="Permalink to this headline">¶</a></h3>
 <p>Depending on the amount of RAM and graphics, sometimes meshing of a model with the great number of meshes is not possible to be visualized by GUI of Gmsh. In that case, we can use a terminal command of Gmsh.</p>
-<p>With a <code class="docutils literal notranslate"><span class="pre">.geo</span></code> file, <code class="docutils literal notranslate"><span class="pre">here</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">command</span> <span class="pre">for</span> <span class="pre">geo2mesh</span> <span class="pre">conversion</span></code></p>
+<p>Before using gmsh cui command, we need to add only 2 lines at the end of the <code class="docutils literal notranslate"><span class="pre">.geo</span></code> file.
+The lines to be added is here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Mesh</span><span class="o">.</span><span class="n">SubdivisionAlgorithm</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">Recombine</span> <span class="n">Surface</span> <span class="s2">&quot;*&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>then we open the terminal on Jupyter lab, then run the command below:</p>
+<p><code class="docutils literal notranslate"><span class="pre">gmsh</span> <span class="pre">-2</span> <span class="pre">yourgeofile.geo</span> <span class="pre">-o</span> <span class="pre">yourmeshfile.msh</span></code></p>
+<p>This command will generate the mesh file.</p>
 </div>
 </div>
 <div class="section" id="example-2-heterogeneous-medium-e-g-hole-filled-with-oil">
@@ -151,43 +160,39 @@ In order to use this mesh file, it is necessary to move this file into the simul
 We will use the same shape of geometry thus the step the explanation for this example starts from just after the section 1-4 Definition of line groups and surface.</p>
 <div class="section" id="id1">
 <h3>2-5: Boolean operation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>In stead of just cutting off the circle area, this example fills this circle with another material.
+<p>In stead of just cutting off the circle area, this example fills in this circle with another material.
 Instead of boolean difference, we use here boolean fragment for keeping the plane surface inside of the circle.</p>
-<p>Before the boolean, we add some circle parts in the same way with the example 1-4 then we starts from the geometry as:</p>
+<p>The initial preparation process is same with Example 1 thus please follow the instruction from 1-1 to 1-4.</p>
 </div>
 <div class="section" id="id2">
 <h3>2-6: Definition boundary conditions and material flags<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-</div>
+<p>In order to keep the surface of the circle, we use the boolean fragments, from Modules-&gt;Geometry-&gt;Elementary entities-&gt;Boolean-&gt;Fragments.
+Firstly please select the rectangle and press <code class="docutils literal notranslate"><span class="pre">e</span></code>, then select the circle and <code class="docutils literal notranslate"><span class="pre">e</span></code>. After selecting the circle, the appearance of Gmsh window is like :</p>
+<img src="./_static/imgs/mesh_ex2_1.png" alt="example 2 boolean fragments" title="ex1 boolean fragments" width=350 />  </div>
 <div class="section" id="id3">
 <h3>2-7: Meshing<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>The setting of mesh element size may be done with exactly the same way with 1-7 thus you may go back to Example 1 then finish meshing.
+Please pay attention that you need to define the 2 physical surface, namely not only <code class="docutils literal notranslate"><span class="pre">M1</span></code> for the rectangle but also <code class="docutils literal notranslate"><span class="pre">M2</span></code> for the circle.</p>
+<p>The generated mesh will be like this image:</p>
+<img src="./_static/imgs/mesh_ex2_2.png" alt="example 2 boolean fragments" title="ex1 boolean fragments" width=350 />  </div>
+</div>
+<div class="section" id="example-3-3d-mesh">
+<h2>Example 3: 3D mesh<a class="headerlink" href="#example-3-3d-mesh" title="Permalink to this headline">¶</a></h2>
+<p>In this example, we will make a 3D mesh model by extruding the 2D surface which we have made in Example 1.Thus this example starts after the section 1-5 (Boolean opperation).However for 3D geometry, boundary condition flags (i.e. top, bottom, left, right) are not necessary.Thus only material flags (M1, M2) are necessary.</p>
+<div class="section" id="extrusion">
+<h3>3-1: Extrusion<a class="headerlink" href="#extrusion" title="Permalink to this headline">¶</a></h3>
+<p>For extrusion, select Geometry-&gt;Extrude-&gt;Transpose.Then select a plane which will be extruded.On the newly opened window, configure the amount of extrusion for x,y,z direction and select the number of layer (elements).
+At this point, we can again use the self-defined parameters e.g. <code class="docutils literal notranslate"><span class="pre">lc</span></code> for the target element size.</p>
+<img src="./_static/imgs/extrude.png" alt="extrude" title="extrude" width=350 />  <p>The image below is the result of this step.</p>
+<img src="./_static/imgs/extrude_res.png" alt="extruderes" title="extruderes" width=350 />  </div>
+<div class="section" id="material-flags">
+<h3>3-2: Material flags<a class="headerlink" href="#material-flags" title="Permalink to this headline">¶</a></h3>
+<p>We will do the same process with the section 1-6.However for 3D geometry, boundary condition flags (i.e. top, bottom, left, right) are not necessary.Thus only material flags (M1, M2) are necessary.</p>
 </div>
 <div class="section" id="id4">
-<h3>2-8: The way to mesh a large model (without GUI)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="example-3-structured-mesh">
-<h2>Example 3: Structured mesh<a class="headerlink" href="#example-3-structured-mesh" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id5">
-<h3>1-1: setting of characteristic length<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id6">
-<h3>1-2: Definition of nodes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id7">
-<h3>1-3: Definition of lines<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id8">
-<h3>1-4: Definition of line groups and surface<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id9">
-<h3>1-5: Definition boundary conditions and material flags<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id10">
-<h3>1-6: Meshing<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="id11">
-<h3>1-7: The way to mesh a large model (without GUI)<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-</div>
+<h3>3-3: Meshing<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Finally by selecting Mesh-&gt;3D, meshing will be finished as,</p>
+<img src="./_static/imgs/3dmesh.png" alt="3dmesh" title="3dmesh" width=350 />  </div>
 </div>
 </div>
 
@@ -216,9 +221,10 @@ Instead of boolean difference, we use here boolean fragment for keeping the plan
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Meshing tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example-1-homogeneous-medium-with-a-hole">Example 1: homogeneous medium with a hole</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-2-heterogeneous-medium-e-g-hole-filled-with-oil">Example 2: heterogeneous medium  (e.g. hole filled with oil)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-3-structured-mesh">Example 3: Structured mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-3-3d-mesh">Example 3: 3D mesh</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 
 <div class="relations">
@@ -226,6 +232,7 @@ Instead of boolean difference, we use here boolean fragment for keeping the plan
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="tutorial.html" title="previous chapter">Tutorial</a></li>
+      <li>Next: <a href="faq.html" title="next chapter">FAQ</a></li>
   </ul></li>
 </ul>
 </div>

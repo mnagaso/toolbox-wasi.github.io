@@ -181,7 +181,19 @@ In order to use this mesh file, it is necessary to move this file into the simul
 
 Depending on the amount of RAM and graphics, sometimes meshing of a model with the great number of meshes is not possible to be visualized by GUI of Gmsh. In that case, we can use a terminal command of Gmsh.
 
-With a `.geo` file, `here is the command for geo2mesh conversion`
+Before using gmsh cui command, we need to add only 2 lines at the end of the `.geo` file.
+The lines to be added is here:
+```
+Mesh.SubdivisionAlgorithm=1;
+Recombine Surface "*";
+```
+
+then we open the terminal on Jupyter lab, then run the command below:
+
+`gmsh -2 yourgeofile.geo -o yourmeshfile.msh`
+
+This command will generate the mesh file.
+
 
 ## Example 2: heterogeneous medium  (e.g. hole filled with oil)
 
@@ -190,23 +202,54 @@ We will use the same shape of geometry thus the step the explanation for this ex
 
 ### 2-5: Boolean operation
 
-In stead of just cutting off the circle area, this example fills this circle with another material.
+In stead of just cutting off the circle area, this example fills in this circle with another material.
 Instead of boolean difference, we use here boolean fragment for keeping the plane surface inside of the circle.
 
-Before the boolean, we add some circle parts in the same way with the example 1-4 then we starts from the geometry as:
-
-
+The initial preparation process is same with Example 1 thus please follow the instruction from 1-1 to 1-4.
 
 ### 2-6: Definition boundary conditions and material flags
-### 2-7: Meshing
-### 2-8: The way to mesh a large model (without GUI)
+In order to keep the surface of the circle, we use the boolean fragments, from Modules->Geometry->Elementary entities->Boolean->Fragments.
+Firstly please select the rectangle and press `e`, then select the circle and `e`. After selecting the circle, the appearance of Gmsh window is like :
 
-## Example 3: Structured mesh
-### 1-1: setting of characteristic length
-### 1-2: Definition of nodes
-### 1-3: Definition of lines
-### 1-4: Definition of line groups and surface
-### 1-5: Definition boundary conditions and material flags
-### 1-6: Meshing
-### 1-7: The way to mesh a large model (without GUI)
+<img src="./_static/imgs/mesh_ex2_1.png" alt="example 2 boolean fragments" title="ex1 boolean fragments" width=350 />  
+
+### 2-7: Meshing
+
+The setting of mesh element size may be done with exactly the same way with 1-7 thus you may go back to Example 1 then finish meshing.
+Please pay attention that you need to define the 2 physical surface, namely not only `M1` for the rectangle but also `M2` for the circle.
+
+The generated mesh will be like this image:
+
+<img src="./_static/imgs/mesh_ex2_2.png" alt="example 2 boolean fragments" title="ex1 boolean fragments" width=350 />  
+
+
+
+## Example 3: 3D mesh
+In this example, we will make a 3D mesh model by extruding the 2D surface which we have made in Example 1.  
+Thus this example starts after the section 1-5 (Boolean opperation).  
+However for 3D geometry, boundary condition flags (i.e. top, bottom, left, right) are not necessary.  
+Thus only material flags (M1, M2) are necessary.  
+
+### 3-1: Extrusion
+For extrusion, select Geometry->Extrude->Transpose.  
+Then select a plane which will be extruded.  
+On the newly opened window, configure the amount of extrusion for x,y,z direction and select the number of layer (elements). 
+At this point, we can again use the self-defined parameters e.g. `lc` for the target element size.
+
+<img src="./_static/imgs/extrude.png" alt="extrude" title="extrude" width=350 />  
+
+The image below is the result of this step.  
+
+<img src="./_static/imgs/extrude_res.png" alt="extruderes" title="extruderes" width=350 />  
+
+
+### 3-2: Material flags
+We will do the same process with the section 1-6.  
+However for 3D geometry, boundary condition flags (i.e. top, bottom, left, right) are not necessary.  
+Thus only material flags (M1, M2) are necessary.  
+
+### 3-3: Meshing
+Finally by selecting Mesh->3D, meshing will be finished as,  
+
+<img src="./_static/imgs/3dmesh.png" alt="3dmesh" title="3dmesh" width=350 />  
 

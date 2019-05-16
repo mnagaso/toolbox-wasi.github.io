@@ -14,6 +14,7 @@ Welcome to SPECFEM2D_on_docker_with_boat's documentation!
    installation
    tutorial
    meshing
+   faq
 
 Indices and tables
 ==================

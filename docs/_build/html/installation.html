@@ -38,67 +38,50 @@
 <h1>Installation and configuration<a class="headerlink" href="#installation-and-configuration" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="how-to-setup-this-library-on-your-computer">
 <h2>How to setup this library on your computer.<a class="headerlink" href="#how-to-setup-this-library-on-your-computer" title="Permalink to this headline">¶</a></h2>
-<p>This library is developed for using with docker system, thus firstly few configuration of the system is required for Windows 10 users.Users with other operating systems e.g. may skip the step 0 below and may start from step 1.</p>
+<p>This library is developed for a use with Docker system, thus firstly a few configuration of the system are required only for Windows 10 users.Users of other operating systems e.g. may skip the step 0 below and may start from step 1.</p>
 </div>
 <div class="section" id="initial-configration-for-docker-only-for-windows">
 <h2>0. Initial configration for docker. (only for Windows)<a class="headerlink" href="#initial-configration-for-docker-only-for-windows" title="Permalink to this headline">¶</a></h2>
 <p>Windows need to be configured as following the official <a class="reference external" href="https://docs.docker.com/docker-for-windows/install/">reference</a>. Here is a summary.</p>
 <ul class="simple">
-<li>at first <em>visualization technology (VTx)</em> need to be enabled from BIOS setup menue.</li>
-<li>Then after Hyper-V needs to be enabled also.Please refer <a class="reference external" href="https://www.nextofwindows.com/how-to-enable-configure-and-use-hyper-v-on-windows-10">this blog</a> to know how to do them.</li>
+<li>At first <em>visualization technology (VTx)</em> need to be enabled from BIOS setup menu.</li>
+<li>Then after Hyper-V needs to be enabled also.</li>
 </ul>
-</div>
+<img src="./_static/imgs/hyperv.png" alt="hyperv" title="hyperv" width=300 />  </div>
 <div class="section" id="install-docker">
 <h2>1. Install Docker<a class="headerlink" href="#install-docker" title="Permalink to this headline">¶</a></h2>
 <p>Download and install Docker (or Docker-ce for Windows) in your computer. Download link and instructions can be found <a class="reference external" href="https://www.docker.com/get-started">here</a> depending on your OS type.It is necessary to create an user account of Docker site.During the installation, please <em>DO NOT</em> check the option to use windows container.</p>
 </div>
 <div class="section" id="install-gmsh">
 <h2>2. Install Gmsh<a class="headerlink" href="#install-gmsh" title="Permalink to this headline">¶</a></h2>
-<p>From <code class="docutils literal notranslate"><span class="pre">http://gmsh.info/bin/Windows/gmsh-4.1.4-Windows32.zip</span></code> download the gmsh executable.</p>
-<hr class="docutils" />
-<p>For the installation of this library, there are two ways for it and users may select from them depending on their environment.</p>
-<ul class="simple">
-<li>for the users who may connect to internet and download/install any softwares without limitation, use of git may be the best way to get the latest updates of the library as this library is under actively developed situation. For installing in this way, please follow the guidance with numbering <code class="docutils literal notranslate"><span class="pre">A-*</span></code>.</li>
-<li>for the user whose environment has limitations on downloading/installation of numerical libraries, user may install this library with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">import</span></code> function. Please follow <code class="docutils literal notranslate"><span class="pre">B-*</span></code> instractions to do so.</li>
-</ul>
+<p>From <a class="reference external" href="http://gmsh.info/bin/Windows/gmsh-4.1.4-Windows64.zip">here</a> download the gmsh executable.
+After extraction, place the gmsh executable in somewhere you prefere.</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="a-1-install-git">
-<h2>A-1. Install Git<a class="headerlink" href="#a-1-install-git" title="Permalink to this headline">¶</a></h2>
-<p>This is an utility for controlling the version of library codes.
-As this library is under development state, user may be required to update the code using git, thus please install it from <a class="reference external" href="https://git-scm.com/downloads">Git official site</a>.</p>
-</div>
-<div class="section" id="a-2-download-the-code-of-library-and-initial-run">
-<h2>A-2. Download the code of library and initial run.<a class="headerlink" href="#a-2-download-the-code-of-library-and-initial-run" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p class="first">On your terminal (or Powershell for Windows), run the command below to download the codes of this library by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/mnagaso/SPECFEM2D_on_docker_with_boat
+<div class="section" id="import-docker-image-or-build-it-from-initial">
+<h2>3. Import docker image or build it from initial<a class="headerlink" href="#import-docker-image-or-build-it-from-initial" title="Permalink to this headline">¶</a></h2>
+<p>In this step, user prepare the docker image, which is the pre-composed linux environment with all dependencies of linux libraries and python modules.</p>
+<p>For this way, users need to have two files,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wasi_2D_v1</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span>
+<span class="n">SPECFEM2D_on_windows_with_boat</span><span class="o">-</span><span class="n">master</span><span class="o">.</span><span class="n">zip</span>
 </pre></div>
 </div>
-</li>
-<li><p class="first">then enter into the directory which was downloaded now:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> SPECFEM2D_on_docker_with_boat
+<p>Please contact to Masaru NAGASO mnsaru22&#64;gmail.com to obtain these files.</p>
+<p>After obtaining these files, user needs to start docker engine (refering <a class="reference internal" href="tutorial.html"><span class="doc">the first section of this page</span></a>).</p>
+<p>Locate the file path <code class="docutils literal notranslate"><span class="pre">wasi_2D_v1.0.tar</span></code> and <code class="docutils literal notranslate"><span class="pre">wasi_3D_v1.0.tar</span></code>.</p>
+<p>Next, extract <code class="docutils literal notranslate"><span class="pre">SPECFEM2D_on_docker_with_boat-master.zip</span></code> and <code class="docutils literal notranslate"><span class="pre">SPECFEM3D_on_docker_with_boat-master.zip</span></code> need to be extracted in somewhere.</p>
+<p>For example, this document continues assuming the positions of two files are in <code class="docutils literal notranslate"><span class="pre">ThisPC\Documents\wasi</span></code> as,<img src="./_static/imgs/exp_file_composition.png" alt="hyperv" title="hyperv" width=300 /></p>
+<p>Open <code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">shell</span></code> window and navigate to the place where <code class="docutils literal notranslate"><span class="pre">wasi_2D_v1.0.tar</span></code> and <code class="docutils literal notranslate"><span class="pre">wasi_3D_v1.0.tar</span></code> are placed with the command below:</p>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">Documents/wasi</span></code></p>
+<p>Run the docker command below on a <code class="docutils literal notranslate"><span class="pre">powershell</span></code> to load the docker image into user’s docker environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker load -i wasi_2D_v1.0.tar
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">cd</span></code> (change directory) command is used for changing the current directory in the Powershell window.</p>
-</li>
-<li><p class="first">start docker daemon if the daemon is not running. (please see the tutorial page for details.)</p>
-</li>
-<li><p class="first">run the command below to initialize the docker container</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker-compose up
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker load -i wasi_3D_v1.0.tar
 </pre></div>
 </div>
-<p>this may take about few minutes for the initial setup. Windows users will be asked to share c disk with docker. please allow it.</p>
-<p>In the case where the installation process stops with an error, please retry the same command above.</p>
-<p>Sometimes, standard output on Powershell window stops by unknow reason. In this case, you just need to tap <code class="docutils literal notranslate"><span class="pre">enter</span></code> key and the standard output restarts.</p>
-</li>
-</ol>
-</div>
-<hr class="docutils" />
-<div class="section" id="b-1-import-an-entire-docker-image">
-<h2>B-1. Import an entire docker image.<a class="headerlink" href="#b-1-import-an-entire-docker-image" title="Permalink to this headline">¶</a></h2>
-<p>this part will be written after testing</p>
-<p>This script does not support docker toolbox (docker system working with virtual box).</p>
+<p>Now all the environment for making a simulation with toolbox-wasi is set.</p>
+<p>Explanation on how to start WASI is described in <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> page.</p>
 </div>
 </div>
 
@@ -127,13 +110,12 @@ As this library is under development state, user may be required to update the c
 <li class="toctree-l2"><a class="reference internal" href="#initial-configration-for-docker-only-for-windows">0. Initial configration for docker. (only for Windows)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-docker">1. Install Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-gmsh">2. Install Gmsh</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-1-install-git">A-1. Install Git</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-2-download-the-code-of-library-and-initial-run">A-2. Download the code of library and initial run.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#b-1-import-an-entire-docker-image">B-1. Import an entire docker image.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-docker-image-or-build-it-from-initial">3. Import docker image or build it from initial</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="meshing.html">Meshing tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
 </ul>
 
 <div class="relations">

@@ -1,0 +1,33 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}SPECFEM2D on Docker with analytics and visualization tools.}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Installation and configuration}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}How to setup this library on your computer.}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}0. Initial configration for docker. (only for Windows)}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}1. Install Docker}{3}{section.2.3}
+\contentsline {section}{\numberline {2.4}2. Install Gmsh}{3}{section.2.4}
+\contentsline {section}{\numberline {2.5}3. Import docker image or build it from initial}{3}{section.2.5}
+\contentsline {chapter}{\numberline {3}Tutorial}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}1. Check if the docker daemon is running.}{5}{section.3.1}
+\contentsline {section}{\numberline {3.2}2. Start docker container}{5}{section.3.2}
+\contentsline {section}{\numberline {3.3}3. Open jupyter lab on your internet browser (chrome etc.)}{5}{section.3.3}
+\contentsline {section}{\numberline {3.4}4. Explanation about Jupyter lab}{6}{section.3.4}
+\contentsline {chapter}{\numberline {4}Meshing tutorial}{7}{chapter.4}
+\contentsline {section}{\numberline {4.1}Example 1: homogeneous medium with a hole}{7}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}1-1: setting of characteristic length}{7}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}1-2: Definition of nodes}{8}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}1-3: Definition of lines}{8}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}1-4: Definition of line groups and surface}{8}{subsection.4.1.4}
+\contentsline {subsection}{\numberline {4.1.5}1-5: boolean operation}{8}{subsection.4.1.5}
+\contentsline {subsection}{\numberline {4.1.6}1-6: Definition boundary conditions and material flags}{9}{subsection.4.1.6}
+\contentsline {subsection}{\numberline {4.1.7}1-7: Meshing}{9}{subsection.4.1.7}
+\contentsline {subsection}{\numberline {4.1.8}1-8: The way to mesh a large model (without GUI)}{10}{subsection.4.1.8}
+\contentsline {section}{\numberline {4.2}Example 2: heterogeneous medium (e.g. hole filled with oil)}{10}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}2-5: Boolean operation}{10}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}2-6: Definition boundary conditions and material flags}{10}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}2-7: Meshing}{10}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Example 3: 3D mesh}{11}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}3-1: Extrusion}{11}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}3-2: Material flags}{11}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}3-3: Meshing}{11}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {5}Indices and tables}{13}{chapter.5}
