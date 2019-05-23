@@ -64,3 +64,9 @@ docker load -i wasi_3D_v1.0.tar
 Now all the environment for making a simulation with toolbox-wasi is set.
 
 Explanation on how to start WASI is described in [Tutorial](tutorial.md) page.
+
+
+## 4. Visit installation (for 3D visualization)
+For visualization of 3D volume data, which WASI-3D creates as `.vtu` files, we may use Visit or any kind of `.vtu` supporting application.
+[Here](https://wci.llnl.gov/simulation/computer-codes/visit/executables) is the link for downloading Visit installation files.  
+
